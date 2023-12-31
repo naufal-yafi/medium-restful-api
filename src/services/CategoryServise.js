@@ -18,4 +18,19 @@ const postCategory = async (request) => {
   });
 };
 
-export default { postCategory };
+const getCategory = async () => {
+  return await prisma.category.findMany();
+};
+
+const getCategoryBySlug = async (request) => {
+  return await prisma.category.findUnique({
+    where: {
+      slug: request,
+    },
+    include: {
+      products: true,
+    },
+  });
+};
+
+export default { postCategory, getCategory, getCategoryBySlug };

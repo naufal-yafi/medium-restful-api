@@ -13,4 +13,30 @@ const createNewProduct = async (req, res, next) => {
   }
 };
 
-export default { createNewProduct };
+const getAllProduct = async (req, res, next) => {
+  try {
+    const response = await ProductService.getProduct();
+
+    res.status(200).json({
+      data: response,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getSpecificProduct = async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+
+    const response = await ProductService.getProductBySlug(slug);
+
+    res.status(200).json({
+      data: response,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { createNewProduct, getAllProduct, getSpecificProduct };

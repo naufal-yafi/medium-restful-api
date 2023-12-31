@@ -22,4 +22,19 @@ const postProduct = async (request) => {
   });
 };
 
-export default { postProduct };
+const getProduct = async () => {
+  return await prisma.product.findMany();
+};
+
+const getProductBySlug = async (request) => {
+  return await prisma.product.findUnique({
+    where: {
+      slug: request,
+    },
+    include: {
+      category: true,
+    },
+  });
+};
+
+export default { postProduct, getProduct, getProductBySlug };
