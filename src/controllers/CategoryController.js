@@ -4,7 +4,7 @@ const createNewCategory = async (req, res, next) => {
   try {
     const response = await CategoryServise.postCategory(req.body);
 
-    res.json({
+    res.status(201).json({
       message: "Data category telah ditambahkan",
       data: response,
     });

@@ -4,7 +4,7 @@ const createNewProduct = async (req, res, next) => {
   try {
     const response = await ProductService.postProduct(req.body);
 
-    res.status(200).json({
+    res.status(201).json({
       message: "Data produk telah ditambahkan",
       data: response,
     });
