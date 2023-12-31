@@ -39,4 +39,24 @@ const getSpecificProduct = async (req, res, next) => {
   }
 };
 
-export default { createNewProduct, getAllProduct, getSpecificProduct };
+const updateDescriptionProduct = async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+
+    const response = await ProductService.patchProduct(req.body, slug);
+
+    res.status(201).json({
+      message: "Deskripsi produk telah diubah",
+      data: response,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default {
+  createNewProduct,
+  getAllProduct,
+  getSpecificProduct,
+  updateDescriptionProduct,
+};

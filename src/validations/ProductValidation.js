@@ -6,4 +6,8 @@ const createProduct = Joi.object({
   category_slug: Joi.string().min(4).max(50).required(),
 });
 
-export { createProduct };
+const updateProduct = Joi.object({
+  description: Joi.string().min(15).max(500).required(),
+});
+
+export { createProduct, updateProduct };

@@ -1,6 +1,9 @@
 import slugify from "slugify";
 import { prisma } from "../app/database.js";
-import { createProduct } from "../validations/ProductValidation.js";
+import {
+  createProduct,
+  updateProduct,
+} from "../validations/ProductValidation.js";
 import validation from "../validations/validation.js";
 
 const postProduct = async (request) => {
@@ -37,4 +40,21 @@ const getProductBySlug = async (request) => {
   });
 };
 
-export default { postProduct, getProduct, getProductBySlug };
+const patchProduct = async (request, params) => {
+  const product = validation(updateProduct, request);
+
+  return await prisma.product.update({
+    where: {
+      slug: params,
+    },
+    data: {
+      description: product.description,
+      updated_at: new Date(),
+    },
+    select: {
+      description: true,
+    },
+  });
+};
+
+export default { postProduct, getProduct, getProductBySlug, patchProduct };
