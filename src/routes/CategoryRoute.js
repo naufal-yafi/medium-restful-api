@@ -5,6 +5,9 @@ const CategoryRoute = express.Router();
 
 CategoryRoute.post("/categories", CategoryController.createNewCategory);
 CategoryRoute.get("/categories", CategoryController.getAllCategory);
-CategoryRoute.get("/categories/:slug", CategoryController.getSpesificCategory);
+CategoryRoute.get(
+  "/categories/:slug/products",
+  CategoryController.getSpesificCategory
+);
 
 export default CategoryRoute;
