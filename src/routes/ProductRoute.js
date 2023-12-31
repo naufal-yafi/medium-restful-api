@@ -10,5 +10,6 @@ ProductRoute.patch(
   "/products/:slug",
   ProductController.updateDescriptionProduct
 );
+ProductRoute.delete("/products/:slug", ProductController.deletedProduct);
 
 export default ProductRoute;

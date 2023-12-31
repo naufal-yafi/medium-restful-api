@@ -57,4 +57,18 @@ const patchProduct = async (request, params) => {
   });
 };
 
-export default { postProduct, getProduct, getProductBySlug, patchProduct };
+const deleteProduct = async (request) => {
+  return await prisma.product.delete({
+    where: {
+      slug: request,
+    },
+  });
+};
+
+export default {
+  postProduct,
+  getProduct,
+  getProductBySlug,
+  patchProduct,
+  deleteProduct,
+};

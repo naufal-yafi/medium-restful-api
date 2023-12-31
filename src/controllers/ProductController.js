@@ -54,9 +54,22 @@ const updateDescriptionProduct = async (req, res, next) => {
   }
 };
 
+const deletedProduct = async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+
+    await ProductService.deleteProduct(slug);
+
+    res.status(204).json({});
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   createNewProduct,
   getAllProduct,
   getSpecificProduct,
   updateDescriptionProduct,
+  deletedProduct,
 };
