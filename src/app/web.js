@@ -4,6 +4,7 @@ import ErrorMiddleware from "../middlewares/ErrorMiddleware.js";
 import LoggerMiddleware from "../middlewares/LoggerMiddleware.js";
 import CategoryRoute from "../routes/CategoryRoute.js";
 import ProductRoute from "../routes/ProductRoute.js";
+import NotFoundError from "../errors/NotFoundError.js";
 
 export const web = express();
 
@@ -15,8 +16,4 @@ web.use(ErrorMiddleware);
 web.use(CategoryRoute);
 web.use(ProductRoute);
 
-web.use("", (req, res) =>
-  res.json({
-    message: "Selamat datang di API saya",
-  })
-);
+web.use("", () => NotFoundError());
